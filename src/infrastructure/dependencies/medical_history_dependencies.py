@@ -1,0 +1,39 @@
+from fastapi import Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from src.infrastructure.repository.medical_history.mysql_repository import MysqlMedicalHistoryRepository
+from src.application.medical_history.create_medical_history_use_case import CreateMedicalHistoryUseCase
+from src.infrastructure.controller.medical_history.create_medical_history_controller import CreateMedicalHistoryController
+from src.infrastructure.controller.medical_history.get_all_medical_history_controller import ListMedicalHistoriesController
+from src.application.medical_history.get_all_medical_history_use_case import ListMedicalHistoriesUseCase
+from src.infrastructure.controller.medical_history.get_medical_history_by_id_controller import GetMedicalHistoryByIdController
+from src.application.medical_history.get_medical_history_by_id_use_case import GetMedicalHistoryByIdUseCase
+from src.infrastructure.controller.medical_history.delete_medical_history_by_id_controller import DeleteMedicalHistoryByIdController
+from src.application.medical_history.delete_medical_history_by_id_use_case import DeleteMedicalHistoryByIdUseCase
+from src.database.mysql import get_db
+
+def get_mysql_medical_history_repository(db: AsyncSession = Depends(get_db)) -> MysqlMedicalHistoryRepository:
+    return MysqlMedicalHistoryRepository(db)
+
+def get_create_medical_history_use_case(repository: MysqlMedicalHistoryRepository = Depends(get_mysql_medical_history_repository)) -> CreateMedicalHistoryUseCase:
+    return CreateMedicalHistoryUseCase(repository)
+
+def get_create_medical_history_controller(use_case: CreateMedicalHistoryUseCase = Depends(get_create_medical_history_use_case)) -> CreateMedicalHistoryController:
+    return CreateMedicalHistoryController(use_case)
+
+def get_list_medical_histories_use_case(repository: MysqlMedicalHistoryRepository = Depends(get_mysql_medical_history_repository)) -> ListMedicalHistoriesUseCase:
+    return ListMedicalHistoriesUseCase(repository)
+
+def get_list_medical_histories_controller(use_case: ListMedicalHistoriesUseCase = Depends(get_list_medical_histories_use_case)) -> ListMedicalHistoriesController:
+    return ListMedicalHistoriesController(use_case)
+
+def get_get_medical_history_by_id_use_case(repository: MysqlMedicalHistoryRepository = Depends(get_mysql_medical_history_repository)) -> GetMedicalHistoryByIdUseCase:
+    return GetMedicalHistoryByIdUseCase(repository)
+
+def get_get_medical_history_by_id_controller(use_case: GetMedicalHistoryByIdUseCase = Depends(get_get_medical_history_by_id_use_case)) -> GetMedicalHistoryByIdController:
+    return GetMedicalHistoryByIdController(use_case)
+
+def get_delete_medical_history_by_id_use_case(repository: MysqlMedicalHistoryRepository = Depends(get_mysql_medical_history_repository)) -> DeleteMedicalHistoryByIdUseCase:
+    return DeleteMedicalHistoryByIdUseCase(repository)
+
+def get_delete_medical_history_by_id_controller(use_case: DeleteMedicalHistoryByIdUseCase = Depends(get_delete_medical_history_by_id_use_case)) -> DeleteMedicalHistoryByIdController:
+    return DeleteMedicalHistoryByIdController(use_case)
