@@ -6,3 +6,4 @@ Servicio de salud hecho para implementarse en app Movil BoviSales
 - FastApi
 - SQLAlchemy
 - pydantic
+- uvicorn
