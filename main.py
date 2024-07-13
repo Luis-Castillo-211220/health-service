@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from src.infrastructure.routes import (
     medical_history_routes,
     health_routes)
-from src.database.mysql import Base, engine
+from src.database.postgresql import Base, engine
 from dotenv import load_dotenv
 
 

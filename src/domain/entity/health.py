@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float
-from src.database.mysql import Base
+# from src.database.mysql import Base
+from src.database.postgresql import Base
 
 class Health(Base):
     __tablename__ = 'health'

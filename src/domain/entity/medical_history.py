@@ -1,10 +1,11 @@
 from sqlalchemy import Column, Integer, JSON, String
-from src.database.mysql import Base
+# from src.database.mysql import Base
+from src.database.postgresql import Base
 
 class MedicalHistory(Base):
     __tablename__ = 'medical_history'
     
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
     id_user = Column(Integer, nullable=False)
     id_cattle = Column(Integer, nullable=False)
     vaccunate_dates = Column(JSON, nullable=False)
