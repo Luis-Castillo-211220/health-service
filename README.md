@@ -18,3 +18,5 @@ comandos para instalar las dependencias correspondientes:
 - pip install pymysql
 - pip install python-dotenv
 - pip install asyncmy
+- pip install asyncpg
+
