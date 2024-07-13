@@ -19,3 +19,14 @@ class MySqlHealthRepository(HealthInterface):
         except Exception as e:
             print("Error creating Health:", e)
             return None
+        
+    async def get_health_by_user_and_cattle(self, id_user: int, id_cattle: int) -> Optional[Health]:
+        try:
+            result = await self.db.execute(select(HealthEntity).filter(HealthEntity.id_user == id_user, HealthEntity.id_cattle == id_cattle))
+            health = result.scalars().first()
+            if health:
+                return Health.model_validate(health)
+            return None
+        except Exception as e:
+            print("Error getting Health by user and cattle:", e)
+            return None
