@@ -1,13 +1,6 @@
 # health-service
 Servicio de salud hecho para implementarse en app Movil BoviSales
 
-
-## Dependencias necesarias para ejecutar este servicio
-- FastApi
-- SQLAlchemy
-- pydantic
-- uvicorn
-
  ## Comandos para instalar las dependencias correspondientes:
 - pip install fastapi
 - pip install uvicorn[standard]
@@ -20,5 +13,6 @@ Servicio de salud hecho para implementarse en app Movil BoviSales
 - pip install asyncmy
 - pip install asyncpg
 - pip install alembic
+- pip install inference
 
 
