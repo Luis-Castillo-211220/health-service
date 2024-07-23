@@ -1,0 +1,8 @@
+fastapi==0.111.1
+inference==0.15.1
+joblib==1.3.2
+pandas==2.0.3
+pydantic==2.8.2
+python-dotenv==1.0.1
+SQLAlchemy==2.0.31
+uvicorn==0.30.3
