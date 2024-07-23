@@ -1,25 +1,29 @@
-from pydantic import BaseModel, field_validator, Field
-from typing import Optional
+from pydantic import BaseModel, field_validator
 from datetime import datetime
 
-class HealthBase(BaseModel):
+class WeeklyMonitoringBase(BaseModel):
     id_user: int
     id_cattle: int
-    date: datetime
-    percentage_health: float
+    age: int
+    weight: float
+    water_consumption: int
+    food_consumption: int
+    behavior: int
+    general_health: float
     
-    @field_validator('percentage_health', mode='before')
+    @field_validator('general_health', 'age', 'weight', mode='before')
     @classmethod
     def must_be_positive(cls, value):
         if value <= 0:
             raise ValueError('Deben de ser valores positivos')
         return value
-    
-class HealthCreate(HealthBase):
+
+class   WeeklyMonitoringCreate(WeeklyMonitoringBase):
     pass
 
-class Health(HealthBase):
+class WeeklyMonitoring(WeeklyMonitoringBase):
     id: int
+    # date: datetime
     
     class Config:
         orm_mode = True

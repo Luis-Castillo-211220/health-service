@@ -8,7 +8,8 @@ class CreateHealthUseCase:
         self.repository = repository
         
     async def execute(self, health: HealthCreate) -> Optional[Health]:
-        if health.percentage_health is None:
-            health.percentage_health = random.randint(0, 101)
+        try:            
+            return await self.repository.create_health(health)
+        except Exception as e:
+            print("Error creating Health:", e)
             
-        return await self.repository.create_health(health)

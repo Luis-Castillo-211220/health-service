@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from src.infrastructure.routes import (
     medical_history_routes,
-    health_routes)
+    health_routes,
+    weekly_monitoring_routes)
 from src.database.postgresql import Base, engine
 from dotenv import load_dotenv
 
@@ -18,7 +19,8 @@ async def on_startup():
         await conn.run_sync(Base.metadata.create_all)
 
 
-app.include_router(medical_history_routes.router, prefix="/api/v1")
+# app.include_router(medical_history_routes.router, prefix="/api/v1")
+app.include_router(weekly_monitoring_routes.router, prefix="/api/v1")
 app.include_router(health_routes.router, prefix="/api/v2")
 
 
