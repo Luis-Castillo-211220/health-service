@@ -1,5 +1,6 @@
 # health-service
 Servicio de salud hecho para implementarse en app Movil BoviSales
+- Proyecto completo en rama Dev
 
  ## Comandos para instalar las dependencias correspondientes:
 - pip install fastapi
